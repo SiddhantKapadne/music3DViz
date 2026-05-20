@@ -17,7 +17,16 @@ npm run dev
 npm run build
 ```
 
-Pushes to `main` deploy automatically via GitHub Actions.
+## GitHub Pages
 
-**GitHub Pages settings:** Repo → **Settings** → **Pages** → set **Source** to **Deploy from branch** → branch **`gh-pages`** → folder **`/ (root)`**.  
-(If the site shows unstyled HTML, the source is pointing at `main` instead of `gh-pages`.)
+The production build is published to the **`docs/`** folder on `main` (updated automatically on push).
+
+**Enable the site:** [Repository Settings → Pages](https://github.com/SiddhantKapadne/music3DViz/settings/pages)
+
+| Setting | Value |
+|--------|--------|
+| Source | Deploy from a branch |
+| Branch | `main` |
+| Folder | **`/docs`** |
+
+If the page loads without styles or shows “Preparing…”, the Pages source is still set to `/ (root)` instead of **`/docs`**.

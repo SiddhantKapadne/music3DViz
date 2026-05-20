@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no"
+    />
+    <title>Visual Music</title>
+    <script type="module" crossorigin src="/music3DViz/assets/index-C6mqXofN.js"></script>
+    <link rel="stylesheet" crossorigin href="/music3DViz/assets/index-BIwAAHK7.css">
+  </head>
+  <body>
+    <div class="app">
+      <section class="upload-zone" id="dropZone">
+        <input
+          type="file"
+          id="fileInput"
+          accept=".mp3,.wav,audio/mpeg,audio/wav"
+          hidden
+        />
+        <div class="upload-content">
+          <p>Drop an MP3 or WAV here or <button type="button" class="link-btn" id="browseBtn">browse</button></p>
+          <p class="upload-hint">Loads <em>Default</em> by default</p>
+        </div>
+      </section>
+
+      <section class="separate-progress hidden" id="separateProgress">
+        <p id="separateLabel">Preparing…</p>
+        <div class="separate-track"><div class="separate-fill" id="separateBar"></div></div>
+      </section>
+
+      <div class="experience hidden" id="experience">
+        <section class="viz-section" id="vizSection">
+          <div class="viz-3d" id="viz3d" aria-label="3D visualizer"></div>
+        </section>
+
+        <header class="player-pill" id="playerSection">
+          <button type="button" class="play-btn" id="playPauseBtn" aria-label="Play">
+            <span class="play-icon" id="playIcon" aria-hidden="true"></span>
+          </button>
+          <div class="player-track">
+            <span class="track-name" id="trackName">Music file name</span>
+            <div class="progress-wrap">
+              <span class="time" id="currentTime">0:00</span>
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+                <input
+                  type="range"
+                  class="progress-input"
+                  id="progress"
+                  min="0"
+                  max="100"
+                  value="0"
+                  step="0.1"
+                  aria-label="Seek"
+                />
+              </div>
+              <span class="time" id="duration">0:00</span>
+            </div>
+          </div>
+          <button type="button" class="add-btn" id="newTrackBtn" aria-label="Upload new track">+</button>
+          <input
+            type="range"
+            class="volume-input hidden"
+            id="masterVolume"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.85"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+        </header>
+
+        <div class="stem-controls" id="stemControls"></div>
+
+        <footer class="site-footer">
+          <div class="footer-left">
+            <span class="footer-name">Siddhant Kapadne</span>
+            <a class="footer-email" href="mailto:ksiddhant46@gmail.com">ksiddhant46@gmail.com</a>
+          </div>
+          <div class="footer-brand">
+            <strong>Visual Music</strong>
+            <span class="brand-dot" aria-hidden="true"></span>
+          </div>
+        </footer>
+      </div>
+
+      <p class="status" id="status" role="status"></p>
+    </div>
+
+  </body>
+</html>

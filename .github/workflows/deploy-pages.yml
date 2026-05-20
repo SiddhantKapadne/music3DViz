@@ -7,15 +7,13 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,27 +26,15 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Add .nojekyll for GitHub Pages
-        run: touch dist/.nojekyll
+      - name: Publish build to docs/ (GitHub Pages)
+        run: |
+          rm -rf docs
+          mkdir -p docs
+          cp -R dist/. docs/
+          touch docs/.nojekyll
 
-      - name: Deploy built site to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Commit and push docs/
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
-
-      - name: Upload GitHub Actions Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy-via-actions:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          commit_message: "chore: update GitHub Pages build in docs/"
+          file_pattern: docs/
