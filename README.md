@@ -17,4 +17,7 @@ npm run dev
 npm run build
 ```
 
-Pushes to `main` deploy automatically to GitHub Pages via Actions.
+Pushes to `main` deploy automatically via GitHub Actions.
+
+**GitHub Pages settings:** Repo → **Settings** → **Pages** → set **Source** to **Deploy from branch** → branch **`gh-pages`** → folder **`/ (root)`**.  
+(If the site shows unstyled HTML, the source is pointing at `main` instead of `gh-pages`.)
